@@ -218,10 +218,9 @@ RCT_EXPORT_METHOD(shareVideoAtUrl:(NSString *)videoUrl
  RCT_EXPORT_METHOD(lensSnapContent:(NSString *)lensUUID
                   caption:(NSString *)caption
                   attachmentUrl:(NSString *)attachmentUrl
-                  launchData:(NSString *)launchData
+                  launchData:(NSDictionary *)launchData
                   resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
 
-    NSLog(@"lens launchData ========> %@", launchData);
      // objective-c
      /* Modeling a Snap using SCSDKLensSnapContent */
      SCSDKLensSnapContent *snap = [[SCSDKLensSnapContent alloc] initWithLensUUID:lensUUID];
@@ -232,14 +231,16 @@ RCT_EXPORT_METHOD(shareVideoAtUrl:(NSString *)videoUrl
      /* First initialize the launch data builder: */
      SCSDKLensLaunchDataBuilder *launchDataBuilder = [[SCSDKLensLaunchDataBuilder alloc] init];
 
-     /* Then add the key value pair of the launch data: */
-      [launchDataBuilder addNSStringKeyPair:@"breadtag" value:launchData];
 
+     /* Then add the key value pair of the launch data: */
+     for (NSString* key in launchData) {
+      [launchDataBuilder addNSStringKeyPair:key value:launchData[key]];
+        // NSLog(@"lens launchData ========> %@", launchData[key]);
+    }
+    
      /* Then initialize and set the launch data to the Lens snap content type using the builder: */
-    // [SCSDKLensLaunchData initWithBuilder:launchDataBuilder];
-     snap.launchData = [[SCSDKLensLaunchData alloc] initWithBuilder:launchDataBuilder];
+    snap.launchData = [[SCSDKLensLaunchData alloc] initWithBuilder:launchDataBuilder];
      
-     NSLog(@"snap : %@", snap);
      [snapAPI startSendingContent:snap completionHandler:^(NSError *error) {
          if (error != nil) {
              resolve(@{
