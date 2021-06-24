@@ -58,7 +58,10 @@ export default class SnapchatKit {
 		resolvedSticker, resolvedSticker == null ? stickerImageSourceOrUrl : null, 
 		stickerPosX, stickerPosY, 
 		attachmentUrl, 
-		caption).catch(e => { reject(e) });
+		caption,
+    topics,
+    isPostToSpotlightPermitted)
+    .catch(e => { reject(e) });
 
     return result;
   }
@@ -74,7 +77,10 @@ export default class SnapchatKit {
 		resolvedSticker, resolvedSticker == null ? stickerImageSourceOrUrl : null, 
 		stickerPosX, stickerPosY, 
 		attachmentUrl, 
-		caption).catch(e => { reject(e) });
+		caption,
+    topics,
+    isPostToSpotlightPermitted)
+    .catch(e => { reject(e) });
 
     return result;
   }

@@ -9,17 +9,17 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                   SnapchatKit for all Snap's frameworks !
                    DESC
-  s.homepage     = "https://github.com/QuentinbTahi/react-snap-kit"
+  s.homepage     = "https://github.com/BreadApp/react-snap-kit"
   s.license      = package["license"]
   s.author       = { "author" => package["author"]["email"], "name" => package["author"]["name"] }
   s.platform     = :ios, "10.0"
-  s.source       = { :git => "https://github.com/QuentinbTahi/react-snap-kit", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/BreadApp/react-snap-kit", :tag => "#{s.version}" }
 
   s.source_files = "ios/**/*.{h,m}"
   s.requires_arc = true
 
   s.dependency "React"
-  s.dependency "SnapSDK/SCSDKLoginKit", "~> 1.8"
-  s.dependency "SnapSDK/SCSDKCreativeKit", "~> 1.8"
+  s.dependency "SnapSDK/SCSDKLoginKit", "~> 1.11"
+  s.dependency "SnapSDK/SCSDKCreativeKit", "~> 1.11"
 end
 
